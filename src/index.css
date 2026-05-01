@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --pixel-bg: #1a1a1a;
+  --pixel-text: #00ff41; /* Matrix green */
+  --pixel-border: #ffffff;
+  --pixel-accent: #ff00ff; /* Neon pink */
+  --pixel-danger: #ff0000;
+  --pixel-success: #00ff00;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--pixel-text);
+  background-color: var(--pixel-bg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  border: 4px solid var(--pixel-border);
+  padding: 20px;
+  position: relative;
+  background: #000;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+}
+
+/* CRT Scanline Effect */
+#root::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.pixel-btn {
+  background: transparent;
+  border: 4px solid var(--pixel-text);
+  color: var(--pixel-text);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  margin: 10px;
+}
+
+.pixel-btn:hover {
+  background: var(--pixel-text);
+  color: #000;
+  box-shadow: 0 0 15px var(--pixel-text);
+}
+
+.pixel-btn:disabled {
+  border-color: #666;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.pixel-input {
+  background: #000;
+  border: 4px solid var(--pixel-border);
+  color: var(--pixel-text);
+  padding: 10px;
+  font-family: inherit;
+  width: 100%;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.pixel-card {
+  border: 4px solid var(--pixel-border);
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.boss-image {
+  width: 120px;
+  height: 120px;
+  border: 4px solid var(--pixel-accent);
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.loading-text {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
