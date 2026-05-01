@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
@@ -40,8 +40,8 @@ jobs:
           VITE_PASS_THRESHOLD: ${{ secrets.VITE_PASS_THRESHOLD || '70' }}
           VITE_QUESTION_COUNT: ${{ secrets.VITE_QUESTION_COUNT || '5' }}
           VITE_USE_MOCK: ${{ secrets.VITE_USE_MOCK || 'false' }}
-        # 加入 --base 確保 GitHub Pages 子目錄路徑正確
-        run: npm run build -- --base=/${{ github.event.repository.name }}/
+        # 使用 ./ 作為 base 路徑，這樣無論部署在哪個子目錄，資源都能正確以相對路徑載入
+        run: npm run build -- --base=./
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
